@@ -13,11 +13,12 @@ const HeaderTitle = styled.div`
   font-weight: 700;
 `;
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <HeaderContainer>
       <HeaderTitle>ONLY.</HeaderTitle>
     </HeaderContainer>
   );
 };
+
 export default Header;
