@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from './UI/Button';
-import Checkbox from './UI/Checkbox';
-import InputField from './UI/InputField';
-import { Label } from './UI/Label';
-import ServerErrorMessage from './UI/ServerErrorMessage';
-import ValidationErrorMessage from './UI/ValidationErrorMessage';
+import Button from '../UI/Button';
+import Checkbox from '../UI/Checkbox';
+import InputField from '../UI/InputField';
+import { Label } from '../UI/Label';
+import ServerErrorMessage from '../UI/ServerErrorMessage';
+import ValidationErrorMessage from '../UI/ValidationErrorMessage';
 
 interface SignInFormProps {}
 
