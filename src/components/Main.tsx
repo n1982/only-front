@@ -7,7 +7,9 @@ interface MainProps {
 
 const StyledMain = styled.div`
   display: flex;
+  height: 80vh;
   justify-content: center;
+  align-content: center;
 `;
 const Main: React.FC<MainProps> = ({ children }) => {
   return <StyledMain>{children}</StyledMain>;
