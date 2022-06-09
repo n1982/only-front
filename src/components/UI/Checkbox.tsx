@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const StyledCheckbox = styled.div`
   position: relative;
+  margin-bottom: 40px;
   > input {
     opacity: 0;
     margin-right: 20px;
