@@ -9,7 +9,7 @@ const StyledMessage = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
-  width: 640px;
+  width: 100%;
   height: 60px;
   padding: 0 20px;
   margin-bottom: 30px;

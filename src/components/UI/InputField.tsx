@@ -8,7 +8,7 @@ interface InputProps {
 const Input = styled.input.attrs((props: InputProps) => ({
   type: props.type || `text`,
 }))`
-  width: 640px;
+  width: 100%;
   height: 60px;
   padding: 0 20px;
   margin-bottom: 10px;
