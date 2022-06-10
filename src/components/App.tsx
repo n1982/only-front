@@ -1,8 +1,8 @@
 import React from 'react';
-
 import { Route, Routes, Navigate } from 'react-router-dom';
-import SignInForm from './pages/SignInForm';
+
 import Layout from './Layout';
+import SignInForm from './pages/SignInForm';
 import Profile from './pages/Profile';
 
 const App: React.FC = () => {
@@ -11,7 +11,7 @@ const App: React.FC = () => {
       <Route path='/' element={<Layout />}>
         <Route index element={<Navigate to='login' replace />} />
         <Route path='login' element={<SignInForm />} />
-        <Route path='profile' element={<Profile />} />
+        <Route path='profile/:login' element={<Profile />} />
       </Route>
     </Routes>
   );

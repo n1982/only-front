@@ -1,4 +1,6 @@
 import React from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 const StyledProfile = styled.div`
@@ -27,12 +29,17 @@ const StyledProfile = styled.div`
 `;
 
 const Profile = () => {
+  const navigate = useNavigate();
+  const { login } = useParams();
+
   return (
     <StyledProfile>
       <h2>
-        Здравствуйте, <span>steve.jobs@example.com</span>
+        Здравствуйте, <span>{login}</span>
       </h2>
-      <button>Выйти</button>
+      <button onClick={() => navigate('/login', { replace: true })}>
+        Выйти
+      </button>
     </StyledProfile>
   );
 };
