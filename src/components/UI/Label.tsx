@@ -9,6 +9,8 @@ interface LabelProps {
   children: React.ReactNode;
 }
 
-export const Label: React.FC<LabelProps> = ({ children }) => {
+const Label: React.FC<LabelProps> = ({ children }) => {
   return <LabelStyled>{children}</LabelStyled>;
 };
+
+export default Label;
