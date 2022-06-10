@@ -1,9 +1,12 @@
 import React from 'react';
-import styled from 'styled-components';
 
 import attentionSvg from '../assets/svg/attention.svg';
 
-interface ServerErrorMessageProps {}
+import styled from 'styled-components';
+
+interface ServerErrorMessageProps {
+  children: React.ReactNode;
+}
 
 const StyledMessage = styled.div`
   display: flex;
@@ -22,11 +25,13 @@ const ErrorText = styled.div`
   font-size: 20px;
 `;
 
-const ServerErrorMessage: React.FC<ServerErrorMessageProps> = () => {
+const ServerErrorMessage: React.FC<ServerErrorMessageProps> = ({
+  children,
+}) => {
   return (
     <StyledMessage>
       <img src={attentionSvg} alt='attention' />
-      <ErrorText>Пользователя test.user@example.com не существует</ErrorText>
+      <ErrorText>{children}</ErrorText>
     </StyledMessage>
   );
 };

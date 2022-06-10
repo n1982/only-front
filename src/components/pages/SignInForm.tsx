@@ -1,16 +1,16 @@
-import React from 'react';
-import styled from 'styled-components';
-import Button from '../UI/Button';
-import Checkbox from '../UI/Checkbox';
-// import InputField from '../UI/InputField';
-import { Label } from '../UI/Label';
-import ServerErrorMessage from '../UI/ServerErrorMessage';
-import ValidationErrorMessage from '../UI/ValidationErrorMessage';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
-interface SignInFormProps {}
+import Button from '../UI/Button';
+import Checkbox from '../UI/Checkbox';
+import Label from '../UI/Label';
+import ServerErrorMessage from '../UI/ServerErrorMessage';
+import ValidationErrorMessage from '../UI/ValidationErrorMessage';
+
+import styled from 'styled-components';
 
 const Form = styled.form`
   width: 640px;
@@ -31,7 +31,12 @@ const Input = styled.input.attrs((props) => ({
   font-size: 24px;
 `;
 
-const SignInForm: React.FC<SignInFormProps> = () => {
+const SignInForm: React.FC = () => {
+  const navigate = useNavigate();
+
+  const [login, setLogin] = useState('');
+  const [serverError, setServerError] = useState(false);
+
   const validationSchema = Yup.object().shape({
     email: Yup.string()
       .required('Поле "Email" должно быть заполнено')
@@ -50,11 +55,23 @@ const SignInForm: React.FC<SignInFormProps> = () => {
   });
 
   const onSubmit = (data: any) => {
-    console.log({ ...data });
+    if (
+      data.email === 'steve.jobs@example.com' &&
+      data.password === 'password'
+    ) {
+      navigate(`/profile/${data.email}`, { replace: true });
+    } else {
+      setLogin(data.email);
+      setServerError(true);
+    }
   };
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <ServerErrorMessage />
+      {serverError && (
+        <ServerErrorMessage>
+          Пользователь ${login} не существует
+        </ServerErrorMessage>
+      )}
       <Label>Логин</Label>
       <Input type='email' {...register('email')} />
       {!!errors?.email && (
