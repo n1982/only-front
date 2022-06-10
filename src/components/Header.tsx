@@ -10,7 +10,7 @@ const HeaderContainer = styled.div`
 
 const HeaderTitle = styled.div`
   font-size: 64px;
-  font-weight: 700;
+  font-weight: bold;
 `;
 
 const Header: React.FC = () => {
