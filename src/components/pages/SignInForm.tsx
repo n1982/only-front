@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import * as Yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import UserAuthContext from '../context/UserAuthContext';
 
 import Button from '../UI/Button';
 import Checkbox from '../UI/Checkbox';
 import Label from '../UI/Label';
 import ServerErrorMessage from '../UI/ServerErrorMessage';
 import ValidationErrorMessage from '../UI/ValidationErrorMessage';
-
 import styled from 'styled-components';
 
 const Form = styled.form`
@@ -33,7 +33,7 @@ const Input = styled.input.attrs((props) => ({
 
 const SignInForm: React.FC = () => {
   const navigate = useNavigate();
-
+  const { setUserAuth } = useContext(UserAuthContext);
   const [login, setLogin] = useState('');
   const [serverError, setServerError] = useState(false);
 
@@ -59,6 +59,7 @@ const SignInForm: React.FC = () => {
       data.email === 'steve.jobs@example.com' &&
       data.password === 'password'
     ) {
+      setUserAuth(true);
       navigate(`/profile/${data.email}`, { replace: true });
     } else {
       setLogin(data.email);

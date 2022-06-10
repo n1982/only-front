@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-
+import UserAuthContext from '../context/UserAuthContext';
 import styled from 'styled-components';
 
 const StyledProfile = styled.div`
@@ -9,13 +9,16 @@ const StyledProfile = styled.div`
   gap: 50px;
   justify-content: center;
   align-items: center;
+
   h2,
   span {
     font-size: 40px;
   }
+
   span {
     font-weight: 700;
   }
+
   button {
     width: 200px;
     height: 60px;
@@ -31,15 +34,19 @@ const StyledProfile = styled.div`
 const Profile = () => {
   const navigate = useNavigate();
   const { login } = useParams();
+  const { setUserAuth } = useContext(UserAuthContext);
+
+  const handleClick = () => {
+    setUserAuth(false);
+    navigate('/login', { replace: true });
+  };
 
   return (
     <StyledProfile>
       <h2>
         Здравствуйте, <span>{login}</span>
       </h2>
-      <button onClick={() => navigate('/login', { replace: true })}>
-        Выйти
-      </button>
+      <button onClick={() => handleClick()}>Выйти</button>
     </StyledProfile>
   );
 };
