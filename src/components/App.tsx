@@ -25,7 +25,7 @@ const App: React.FC = () => {
       <div className='App'>
         <Header />
         <Main>
-          <Profile />
+          <SignInForm />
         </Main>
       </div>
     </>
