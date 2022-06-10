@@ -36,6 +36,7 @@ const SignInForm: React.FC = () => {
   const { setUserAuth } = useContext(UserAuthContext);
   const [login, setLogin] = useState('');
   const [serverError, setServerError] = useState(false);
+  const [disabledButton, setDisabledButton] = useState(false);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string()
@@ -55,15 +56,23 @@ const SignInForm: React.FC = () => {
   });
 
   const onSubmit = (data: any) => {
+    setDisabledButton(true);
     if (
       data.email === 'steve.jobs@example.com' &&
       data.password === 'password'
     ) {
-      setUserAuth(true);
-      navigate(`/profile/${data.email}`, { replace: true });
+      setTimeout(() => {
+        setUserAuth(true);
+        navigate(`/profile/${data.email}`, { replace: true });
+        setDisabledButton(false);
+      }, 3000);
     } else {
-      setLogin(data.email);
-      setServerError(true);
+      setDisabledButton(true);
+      setTimeout(() => {
+        setLogin(data.email);
+        setServerError(true);
+        setDisabledButton(false);
+      }, 3000);
     }
   };
   return (
@@ -88,7 +97,7 @@ const SignInForm: React.FC = () => {
         </ValidationErrorMessage>
       )}
       <Checkbox label='Запомнить пароль' />
-      <Button disabled={false}>Войти</Button>
+      <Button disabled={disabledButton}>Войти</Button>
     </Form>
   );
 };
